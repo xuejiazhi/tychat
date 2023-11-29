@@ -1,0 +1,4 @@
+#msggw config
+msggw:
+  type: ws #ws websocket | mqtt
+  port: 9000
