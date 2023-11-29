@@ -1,7 +1,7 @@
 #msggw config
 msggw:
   type: ws #ws websocket | mqtt
-  port: 90002
+  port: 9000
 
 admin_api:
   port: 9001

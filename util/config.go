@@ -22,17 +22,21 @@ type AdminApiStruct struct {
 }
 
 // PhraseConfig 解析配置文件
-func PhraseConfig() {
+func PhraseConfig() (err error) {
 	viper.AddConfigPath("./config")
 	viper.SetConfigName("config")
 	viper.SetConfigType("yaml")
 
+	//读取配置文件
 	if err := viper.ReadInConfig(); err != nil {
 		log.Fatalf("read config file failed, %v", err)
 	}
+
+	//序列化
 	if err := viper.Unmarshal(&GlobalCfg); err != nil {
 		log.Printf("unmarshal config file failed, %v", err)
 	}
 
-	log.Printf("%#v", GlobalCfg)
+	//返回
+	return err
 }

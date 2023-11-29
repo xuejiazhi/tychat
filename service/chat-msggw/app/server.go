@@ -1,8 +1,38 @@
 package app
 
-import "tychat/util"
+import (
+	"fmt"
+	"github.com/gin-gonic/gin"
+	"net/http"
+	"tychat/service/chat-msggw/app/action"
+	"tychat/util"
+)
 
-func NewMsgGateWayServer() error {
-	util.PhraseConfig()
-	return nil
+func GateWayServer() (err error) {
+	//解析配置文件
+	if err = util.PhraseConfig(); err != nil {
+		panic(fmt.Sprintf("Phrase Config error,%s", err.Error()))
+	}
+
+	//开始监听
+	ServerDefault()
+	return err
+}
+
+func ServerDefault() {
+	//初始化gin
+	r := gin.Default()
+
+	r.GET("/", func(c *gin.Context) {
+		c.String(http.StatusOK, "(^v^) Hello, I'm TuiYun Chat!!!")
+	})
+
+	//起websocket服务
+	r.GET("/ws", action.WebSocket)
+
+	//运行服务
+	port := fmt.Sprintf(":%d", util.GlobalCfg.Msggw.Port)
+	if err := r.Run(port); err == nil {
+		fmt.Println("Run MsgGw Success")
+	}
 }
