@@ -1,4 +1,11 @@
 #msggw config
 msggw:
   type: ws #ws websocket | mqtt
-  port: 9000
+  port: 90002
+
+admin_api:
+  port: 9001
+
+chat_api:
+
+db_sev:
