@@ -3,6 +3,7 @@ package action
 import (
 	"github.com/gorilla/websocket"
 	"net/http"
+	"tychat/util"
 )
 
 var Upgrade = websocket.Upgrader{
@@ -11,8 +12,19 @@ var Upgrade = websocket.Upgrader{
 	},
 }
 
-// WsClients 定义websocket
-var WsClients = make(map[string]*websocket.Conn)
+var (
+	Gpool *util.GoPool
+	//SocketPool *SocketConPool
+)
+
+// SocketConPool  定义websocket
+//type SocketConPool struct {
+//	Conn   *websocket.Conn //连接
+//	Locked *sync.RWMutex
+//	Closed bool //是否关闭
+//}
+
+var WsClients = make(chan map[string]*websocket.Conn, 10000)
 
 type LoginSession struct {
 	UserID string `json:"userID"`

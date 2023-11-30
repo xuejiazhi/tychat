@@ -10,9 +10,15 @@ chat_api:
   port: 9002
 
 redis:
-  ip: 192.168.1.1
-  port: 6379
+  ip: 101.33.251.102
+  port: 16379
 
 dbs:
   ip: 127.0.0.1
   port: 9003
+
+mysql:
+  ip: 101.33.251.102
+  port: 13306
+  passwd: openIM123
+  database: tuiyun_chat

@@ -12,7 +12,7 @@ func InitRedis() {
 	//连接redis
 	RedisClient = redis.NewClient(&redis.Options{
 		Addr:     addr,
-		Password: "",
+		Password: "openIM123",
 		DB:       0})
 	//defer 关闭
 	defer RedisClient.Close()
