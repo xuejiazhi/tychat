@@ -1,9 +1,11 @@
 package util
 
 import (
+	"fmt"
 	"net/http"
 	"os"
 	"os/signal"
+	"strings"
 	"syscall"
 )
 
@@ -21,8 +23,22 @@ func Signal() {
 	<-sigs
 }
 
-func PprofListen() {
+func PprofListen(port int) {
 	go func() {
-		http.ListenAndServe(":6060", nil)
+		http.ListenAndServe(fmt.Sprintf(":%d", port), nil)
 	}()
+}
+
+func GetHeadInfos(req *http.Request, key string) []string {
+	for k, v := range req.Header {
+		if strings.ToLower(k) == strings.ToLower(key) {
+			return v
+		}
+	}
+	return nil
+}
+
+func HandleError(err error) {
+	fmt.Printf("Handle Error %v", err.Error())
+	panic(err.Error())
 }

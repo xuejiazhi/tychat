@@ -10,7 +10,7 @@ import (
 // 消息网关
 func main() {
 	//pprof
-	util.PprofListen()
+	util.PprofListen(6060)
 	//open new message gateway
 	app.GateWayServer()
 	//sig notify

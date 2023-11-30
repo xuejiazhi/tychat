@@ -10,6 +10,9 @@ var GlobalCfg ServiceConfig
 type ServiceConfig struct {
 	Msggw     MsgGw          `yaml:"msggw"`
 	Admin_Api AdminApiStruct `yaml:"admin_api"`
+	Chat_Api  ChatApiStruct  `yaml:"chat_Api"`
+	Redis     RedisStruct    `yaml:"redis"`
+	Dbs       DbsStruct      `yaml:"dbs"`
 }
 
 type MsgGw struct {
@@ -19,6 +22,20 @@ type MsgGw struct {
 
 type AdminApiStruct struct {
 	Port int `yaml:"port"`
+}
+
+type DbsStruct struct {
+	IP   string `yaml:"ip"`
+	Port int    `yaml:"port"`
+}
+
+type ChatApiStruct struct {
+	Port int `yaml:"port"`
+}
+
+type RedisStruct struct {
+	IP   string `yaml:"ip"`
+	Port int    `yaml:"port"`
 }
 
 // PhraseConfig 解析配置文件

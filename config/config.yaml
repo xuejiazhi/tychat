@@ -7,5 +7,12 @@ admin_api:
   port: 9001
 
 chat_api:
+  port: 9002
 
-db_sev:
+redis:
+  ip: 192.168.59.191
+  port: 6379
+
+dbs:
+  ip: 127.0.0.1
+  port: 9003
